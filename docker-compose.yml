@@ -1,0 +1,35 @@
+name: haar-impurity-inspector
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      CASCADE_PATH: /app/models/cascade.xml
+      STORAGE_DIR: /app/storage
+      CORS_ORIGINS: http://localhost:3000
+      INFERENCE_WORKERS: 2
+      HAAR_SCALE_FACTOR: 1.1
+      HAAR_MIN_NEIGHBORS: 5
+    volumes:
+      # Modelo treinado: basta colocar o cascade.xml em backend/models/
+      - ./backend/models:/app/models:ro
+      # SQLite + imagens persistem entre reinicializações
+      - inspection-data:/app/storage
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  inspection-data:

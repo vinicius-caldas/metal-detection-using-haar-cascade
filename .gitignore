@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+backend/storage/
+backend/training/data/
+backend/training/evaluation_report.csv
+
+# Modelo treinado (mantido no repo para funcionar out-of-the-box)
+# backend/models/*.xml
+
+# Node
+frontend/node_modules/
+frontend/.next/
+frontend/next-env.d.ts

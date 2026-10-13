@@ -1,0 +1,121 @@
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 24px;
+  align-items: start;
+}
+@media (max-width: 960px) {
+  .layout { grid-template-columns: 1fr; }
+}
+.main, .side { display: flex; flex-direction: column; gap: 16px; }
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.h2 { font-size: 1rem; font-weight: 600; margin: 0; }
+.muted { color: var(--muted); font-size: 0.85rem; }
+
+/* ---------- upload ---------- */
+.dropzone {
+  border: 2px dashed var(--border);
+  border-radius: 10px;
+  padding: 36px 16px;
+  text-align: center;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color .15s, background .15s;
+}
+.dropzone:hover, .dropzoneActive { border-color: var(--accent); background: var(--accent-soft); }
+.dropzoneTitle { font-weight: 500; word-break: break-all; }
+
+.button {
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.button:disabled { opacity: .45; cursor: not-allowed; }
+
+.error, .warning { border-radius: 8px; padding: 12px 16px; font-size: 0.9rem; }
+.error { background: #fdecec; color: #9b1c1c; border: 1px solid #f5c2c2; }
+.warning { background: #fff7e6; color: #8a5300; border: 1px solid #ffd99a; }
+
+/* ---------- imagem + overlay ---------- */
+.toolbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.toggle { display: flex; gap: 6px; align-items: center; font-size: 0.85rem; cursor: pointer; }
+
+.stage { position: relative; line-height: 0; }
+.stageImage { width: 100%; height: auto; border-radius: 8px; display: block; }
+
+.box {
+  position: absolute;
+  border: 2px solid var(--danger);
+  background: rgba(229, 62, 62, .12);
+  box-sizing: border-box;
+  transition: background .1s;
+}
+.boxActive { background: rgba(229, 62, 62, .4); border-width: 3px; z-index: 2; }
+.boxLabel {
+  position: absolute;
+  top: -18px;
+  left: -2px;
+  background: var(--danger);
+  color: #fff;
+  font-size: 11px;
+  line-height: 16px;
+  padding: 0 4px;
+  border-radius: 3px 3px 3px 0;
+  white-space: nowrap;
+}
+
+/* ---------- métricas ---------- */
+.metrics { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; margin: 0; font-size: 0.9rem; }
+.metrics dt { color: var(--muted); }
+.metrics dd { margin: 0; font-weight: 500; text-align: right; }
+.link { color: var(--accent); font-size: 0.85rem; text-decoration: none; }
+
+.table { width: 100%; border-collapse: collapse; font-size: 0.8rem; font-variant-numeric: tabular-nums; }
+.table th, .table td { padding: 6px 4px; text-align: right; border-bottom: 1px solid var(--border); }
+.table th:first-child, .table td:first-child { text-align: left; }
+.table tbody tr { cursor: default; }
+.rowActive { background: var(--accent-soft); }
+
+/* ---------- badges ---------- */
+.badge { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; white-space: nowrap; }
+.qPREMIUM { background: #e3f9e5; color: #1b7a2b; }
+.qSTANDARD { background: #e6f0ff; color: #1e4fa8; }
+.qLOW { background: #fff4d6; color: #8a6100; }
+.qREJECTED { background: #fde2e2; color: #a61b1b; }
+
+/* ---------- histórico ---------- */
+.history { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.historyItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  color: inherit;
+  font: inherit;
+}
+.historyItem:hover { border-color: var(--accent); }
+.thumb { width: 44px; height: 44px; object-fit: cover; border-radius: 6px; flex-shrink: 0; }
+.historyText { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.historyName { font-size: 0.85rem; font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
